@@ -1,0 +1,51 @@
+# site settings
+title: Association Culturelle 
+subtitle: de Larchant
+email: quentin.glorieux@gmail.com
+description: 'Village historique & sportif au sein du Parc Naturel Régional du Gâtinais français  <br /> 10 000 ans d’histoire dans la forêt de la Commanderie  - Domaine de Fontainebleau 
+'
+
+baseurl: ''
+url: www.larchant.com
+author:
+street_address: Place Pasteur
+city: Larchant
+state: 
+zip_code: 77760
+country: France
+phone: 
+
+# homepage tiles
+tiles-source: pages # accepts "posts" or "pages"
+tiles-count: 6
+
+# social settings (key must match name of font awesome icon)
+# see https://fontawesome.com/icons?d=gallery&p=2&s=brands
+# Icons are not shown if value is empty
+# You need to restart jekyll for changes to have an effect
+socials:
+  GitHub: https://github.com/quentinglorieux
+  GitLab:
+  Instagram:
+  Twitter: https://twitter.com/
+  Facebook:
+  Slack:
+
+# build settings
+markdown: kramdown
+
+sass:
+  style: compressed
+
+exclude:
+- "*.gemspec"
+- LICENSE.md
+- CONTRIBUTING.md
+- README.md 
+
+include:
+  - .htaccess
+  - _pages
+
+plugins:
+  - jekyll-toc

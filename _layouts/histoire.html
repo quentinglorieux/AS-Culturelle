@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body>
+
+    {% include header.html %}
+
+    <!-- Main -->
+    <div id="main" class="alt">
+
+        <!-- One -->
+        <section id="one">
+          <div class="head_container"> <h1> Un village Historique </h1> </div>
+         
+          <div class="inner"> 
+            <div class="links"> 
+           <a href="#village" class="button small">Le village</a>
+           <a href="#eglise" class="button small">L'Église Saint Mathurin</a>
+          </div>
+            {{ content }} 
+          </div>
+            
+            <div class="container" id="village"><h2> 10.000 ans d'histoire</h2></div>
+            
+            <div class="flex inner">
+              
+                {% for post in site.posts %}
+                    {% if post.path contains '/histoire/' %}
+                        {% if post.title != 404 %}
+                            <div class="card">
+                                {% if post.image %}
+                                <span class="card-image">
+                                  <img src="{{ site.baseurl }}/{{ post.image }}" alt="" />
+                                </span>
+                                {% endif %}
+                                <div class="card-content">
+                                  <header class="major">
+                                      <h3>{{ post.title }}</h3>
+                                  </header>
+                                  <p><a href="{{ post.url }}" class="button small">En savoir plus</a> </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+
+            <div class="container" id="eglise"><h2> L'église Saint Mathurin</h2></div>
+            
+            <div class="flex inner">
+              
+                {% for post in site.posts %}
+                    {% if post.path contains '/eglise/' %}
+                        {% if post.title != 404 %}
+                            <div class="card">
+                                {% if post.image %}
+                                <span class="card-image">
+                                  <img src="{{ site.baseurl }}/{{ post.image }}" alt="" />
+                                </span>
+                                {% endif %}
+                                <div class="card-content">
+                                  <header class="major">
+                                      <h3>{{ post.title }}</h3>
+                                  </header>
+                                  <p><a href="{{ post.url }}" class="button small">En savoir plus</a> </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+
+        </section>
+
+    </div>
+
+    {% include footer.html %}
+
+</body>
+
+</html>
+
+<style>
+ /* Add this CSS to your existing styles or create a new stylesheet */
+.links{
+padding-bottom: 2em;}
+
+.links a {
+  margin-right: 30px; /* Adjust the margin as needed */
+}
+
+/* Optionally, you can remove the margin from the last button to avoid extra space */
+.links a:last-child {
+  margin-right: 0;
+}
+/* Card styles */
+#one .inner{
+  max-width: 90%;
+  padding: 2em 0 2em 0;
+}
+.flex {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: start ;
+  
+
+}
+
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 300px;
+  overflow: hidden;
+}
+
+/* Image styles within the card */
+.card-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0; /* Add rounded corners to the top */
+}
+
+/* Content styles within the card */
+.card-content {
+  padding: 20px;
+}
+
+/* Heading styles within the card */
+.card-content header {
+  margin-bottom: 15px;
+}
+
+.head_container{
+  padding: 3em 0 0em 0;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.head_container h1{
+  margin: 0;
+}
+
+.container{
+  padding: 0em 0 0em 0;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.container h2{
+  margin: 0;
+}
+
+
+/* Adjustments for better responsiveness */
+@media screen and (max-width: 680px) {
+  .flex {
+    justify-content: center;
+  }
+
+  .card{
+    width: 100%;
+  }
+}
+
+
+</style>
+
+<script>
+  // Add smooth scrolling behavior with offset
+  document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+
+              const targetElement = document.querySelector(this.getAttribute('href'));
+              const offset = 70; // Adjust the offset as needed
+
+              if (targetElement) {
+                  window.scrollTo({
+                      top: targetElement.offsetTop - offset,
+                      behavior: 'smooth'
+                  });
+              }
+          });
+      });
+  });
+</script>

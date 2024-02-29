@@ -1,0 +1,28 @@
+{% assign in_code_block = false %}
+{% assign page_toc = "" %}
+
+{% for line in page.content %}
+  {% if line contains "```" %}
+    {% assign in_code_block = !in_code_block %}
+  {% endif %}
+  {% unless in_code_block %}
+    {% if line contains "##" or line contains "###" %}
+      {% assign header_text = line | replace: "#", "" | strip %}
+      {% assign header_anchor = header_text | slugify %}
+      {% assign header_level = line | remove: header_text | size %}
+      {% assign indentation = header_level | minus: 2 | times: 2 | prepend: " " %}
+      {% assign toc_line = "<a href='#" | append: header_anchor | append: "'>" | append: header_text | append: "</a>" %}
+      {% assign toc_line_indented = toc_line | prepend: indentation %}
+      {% assign page_toc = page_toc | append: toc_line_indented | append: "<br>" %}
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+
+{% if page_toc.size > 0 %}
+  <div class="toc">
+    <strong>Table of Contents:</strong>
+    <div>
+      {{ page_toc | strip_html }}
+    </div>
+  </div>
+{% endif %}
